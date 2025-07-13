@@ -54,7 +54,8 @@ func _button_pressed() -> void:
 			if !Global.current_project.selected_cels.has(frame_layer):
 				Global.current_project.selected_cels.append(frame_layer)
 
-		Global.current_project.change_cel(frame, -1)
+		Global.current_project.change_cel(frame, -1, true)
+
 
 	elif Input.is_action_just_released("right_mouse"):
 		if Global.current_project.frames.size() == 1:

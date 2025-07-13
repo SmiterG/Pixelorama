@@ -124,7 +124,7 @@ func _on_CelButton_pressed() -> void:
 				project.selected_cels.append(frame_layer)
 
 		if change_cel:
-			project.change_cel(frame, layer)
+			project.change_cel(frame, layer, true)
 		else:
 			project.change_cel(project.selected_cels[0][0], project.selected_cels[0][1])
 			release_focus()

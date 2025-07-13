@@ -547,7 +547,7 @@ func _size_changed(value: Vector2i) -> void:
 	resized.emit()
 
 
-func change_cel(new_frame: int, new_layer := -1) -> void:
+func change_cel(new_frame: int, new_layer := -1, manual_input := false) -> void:
 	if new_frame < 0:
 		new_frame = current_frame
 	if new_layer < 0:
@@ -594,6 +594,9 @@ func change_cel(new_frame: int, new_layer := -1) -> void:
 	order_layers()
 	Global.transparent_checker.update_rect()
 	Global.cel_switched.emit()
+	if manual_input:
+		Global.animation_timeline.calculate_frame_bounds()
+		print("dando aquela testada né")
 
 
 func _animation_tags_changed(value: Array[AnimationTag]) -> void:

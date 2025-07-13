@@ -797,16 +797,19 @@ func _on_AnimationTimer_timeout() -> void:
 		Global.frame_hbox.get_child(project.current_frame)
 	)
 
+func calculate_frame_bounds():
+	var project := Global.current_project
+	for tag in project.animation_tags:
+			if project.current_frame + 1 >= tag.from && project.current_frame + 1 <= tag.to:
+				first_frame = tag.from - 1
+				last_frame = mini(project.frames.size() - 1, tag.to - 1)
 
 func play_animation(play: bool, forward_dir: bool) -> void:
 	var project := Global.current_project
 	first_frame = 0
 	last_frame = project.frames.size() - 1
 	if Global.play_only_tags:
-		for tag in project.animation_tags:
-			if project.current_frame + 1 >= tag.from && project.current_frame + 1 <= tag.to:
-				first_frame = tag.from - 1
-				last_frame = mini(project.frames.size() - 1, tag.to - 1)
+		calculate_frame_bounds()
 
 	if first_frame == last_frame:
 		if forward_dir:
