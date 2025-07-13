@@ -26,3 +26,5 @@ mono_crash.*.json
 android/
 
 addons/godotsteam
+
+export/
